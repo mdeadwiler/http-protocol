@@ -1,37 +1,114 @@
-[![progress-banner](https://backend.codecrafters.io/progress/http-server/2c80f009-acc6-4ed1-8919-b35970d551d2)](https://app.codecrafters.io/users/codecrafters-bot?r=2qF)
+# Custom HTTP Server Implementation
 
-This is a starting point for Python solutions to the
-["Build Your Own HTTP server" Challenge](https://app.codecrafters.io/courses/http-server/overview).
+A robust HTTP/1.1 server implementation in Python that supports multiple client connections, file operations, and response compression. This server demonstrates modern HTTP functionality while maintaining clean, type-safe code through comprehensive type hinting.
 
-[HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) is the
-protocol that powers the web. In this challenge, you'll build a HTTP/1.1 server
-that is capable of serving multiple clients.
+## Features
 
-Along the way you'll learn about TCP servers,
-[HTTP request syntax](https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html),
-and more.
+### Core HTTP Functionality
+- **HTTP/1.1 Protocol Support**: Full implementation of HTTP/1.1 request handling
+- **Multi-threading**: Handles multiple concurrent client connections efficiently
+- **Method Support**: Implements GET and POST methods with proper status codes
+- **Error Handling**: Comprehensive error handling with appropriate HTTP status codes (404, 405, 500)
 
-**Note**: If you're viewing this repo on GitHub, head over to
-[codecrafters.io](https://codecrafters.io) to try the challenge.
+### Advanced Features
+- **File Operations**
+  - Binary file upload and download support
+  - Secure file path handling
+  - Automatic Content-Type detection for files
+  - Directory-based file storage
 
-# Passing the first stage
+- **Response Compression**
+  - Gzip compression support
+  - Content-Encoding header handling
+  - Automatic compression negotiation
 
-The entry point for your HTTP server implementation is in `app/main.py`. Study
-and uncomment the relevant code, and push your changes to pass the first stage:
+- **Special Endpoints**
+  - `/` - Root endpoint returning 200 OK
+  - `/echo/*` - Echo service returning client-provided content
+  - `/user-agent` - Returns client's User-Agent information
+  - `/files/*` - File upload and download functionality
 
-```sh
-git commit -am "pass 1st stage" # any msg
-git push origin master
+### Technical Implementation
+- **Type Safety**
+  - Comprehensive type hints throughout the codebase
+  - Proper handling of binary and text data
+  - Clear interface definitions
+
+- **Robust Error Handling**
+  - Graceful handling of malformed requests
+  - Proper resource cleanup
+  - Detailed error logging
+
+## Getting Started
+
+### Prerequisites
+- Python 3.11 or later
+- `pipenv` (recommended for dependency management)
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd <project-directory>
 ```
 
-Time to move on to the next stage!
+2. Set up the environment:
+```bash
+pipenv install
+```
 
-# Stage 2 & beyond
+3. Run the server:
+```bash
+python main.py <directory-path>
+```
+Replace `<directory-path>` with the path where files should be stored.
 
-Note: This section is for stages 2 and beyond.
+## Usage Examples
 
-1. Ensure you have `python (3.11)` installed locally
-1. Run `./your_program.sh` to run your program, which is implemented in
-   `app/main.py`.
-1. Commit your changes and run `git push origin master` to submit your solution
-   to CodeCrafters. Test output will be streamed to your terminal.
+### Basic GET Request
+```bash
+curl http://localhost:4221/
+```
+
+### Echo Service
+```bash
+curl http://localhost:4221/echo/hello-world
+```
+
+### User Agent Information
+```bash
+curl http://localhost:4221/user-agent
+```
+
+### File Operations
+Upload a file:
+```bash
+curl -X POST -d 'content' http://localhost:4221/files/example.txt
+```
+
+Download a file:
+```bash
+curl http://localhost:4221/files/example.txt
+```
+
+### Key Components
+- **HTTPServer**: Main server class handling connection management
+- **Request Processing**: Dedicated methods for GET and POST requests
+- **File Operations**: Binary-safe file handling
+- **Compression**: Gzip compression support
+- **Multi-threading**: Thread-per-client connection model
+
+### Technical Considerations
+- Binary data handling for file operations
+- Thread safety in concurrent operations
+- Content-Type and Content-Length header management
+- Proper HTTP response formatting
+- Secure file path handling
+
+## Future Enhancements
+- Support for additional HTTP methods (PUT, DELETE)
+- HTTPS support
+- Request rate limiting
+- Cache control implementation
+- Enhanced logging capabilities
