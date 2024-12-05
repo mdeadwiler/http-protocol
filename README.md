@@ -4,6 +4,10 @@ A robust HTTP/1.1 server implementation in Python that supports multiple client 
 
 ## Features
 
+## Why This Project?
+
+As an entry-level software engineer deeply passionate about understanding system fundamentals, I chose to build this HTTP server implementation to gain hands-on experience with core networking concepts. This project challenged me to dive deep into TCP/IP protocols, concurrent programming with threading, and proper error handling - skills that are essential for any backend developer. By building a server from scratch rather than using existing frameworks, I gained invaluable insights into how web servers actually work under the hood. The project helped me understand crucial software engineering concepts like protocol design, system architecture, and test-driven development. What started as a learning exercise became a practical demonstration of my ability to handle complex programming challenges and my commitment to understanding the fundamental building blocks of modern web infrastructure. This experience has not only improved my technical skills but also reinforced my passion for software engineering and system design.
+
 ### Core HTTP Functionality
 - **HTTP/1.1 Protocol Support**: Full implementation of HTTP/1.1 request handling
 - **Multi-threading**: Handles multiple concurrent client connections efficiently
